@@ -1,0 +1,23 @@
+* Set up
+1. Download [[https://www.raspberrypi.org/downloads/raspbian/][Raspbian Lite image]]
+2. Plug in microSD card and check which disk it is with ~diskutil list~ and unmount it ~diskutil unmountDisk /dev/diskX~
+3. Write the image to the card
+  #+begin_src sh
+  sudo dd if=2020-02-13-raspbian-buster-lite.img of=/dev/rdiskX bs=1m
+  #+end_src
+4. Enable SSH
+   Create an ~ssh~ file ~touch /Volumes/boot/ssh~
+5. Enable WiFi (optional)
+   Create ~wpa_supplicant.conf~ in ~/boot~ with the following contents:
+   #+begin_src
+   ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+   update_config=1
+   country=US
+
+   network={
+       ssid="YOURSSID"
+       psk="YOURPASSWORD"
+       scan_ssid=1
+   }
+   #+end_src
+6.
